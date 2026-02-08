@@ -1,0 +1,22 @@
+@startuml
+title Robustness Diagram — Account Overview
+skinparam style strictuml
+left to right direction
+
+actor Member
+
+boundary "Account Dashboard" as B1
+control "Account Controller" as C1
+
+entity "MemberAccount" as E1
+entity "Loan" as E2
+entity "Fine" as E3
+
+Member --> B1
+B1 --> C1
+C1 --> E1 : profile
+C1 --> E2 : loans
+C1 --> E3 : fines
+C1 --> B1 : display
+
+@enduml
