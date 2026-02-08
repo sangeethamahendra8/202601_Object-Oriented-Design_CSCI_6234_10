@@ -1,0 +1,27 @@
+@startuml
+skinparam style strictuml
+left to right direction
+
+actor Member
+actor Staff
+
+boundary "Borrow Form" as B1
+boundary "Approval Screen" as B2
+
+control "Borrow Controller" as C1
+control "Approval Controller" as C2
+
+entity "Member Account" as E1
+entity "Book Item" as E2
+entity "Loan" as E3
+
+Member --> B1
+B1 --> C1 : submit request
+C1 --> E1 : validate member
+C1 --> E2 : check availability
+C1 --> B2 : send for approval
+
+Staff --> B2
+B2 --> C2 : approve
+C2 --> E3 : create loan
+C2 --> B2 : confirmation
