@@ -1,0 +1,26 @@
+@startuml
+title Robustness Diagram — Approve Loan
+skinparam style strictuml
+left to right direction
+
+actor "Library Staff" as Staff
+
+boundary "Loan Approval Screen" as B1
+control "Loan Approval Controller" as C1
+
+entity "BorrowRequest" as E1
+entity "MemberAccount" as E2
+entity "BookItem" as E3
+entity "Loan" as E4
+entity "Policy" as E5
+
+Staff --> B1
+B1 --> C1 : approve/deny
+C1 --> E1 : load request
+C1 --> E2 : validate member
+C1 --> E5 : validate policy
+C1 --> E3 : lock/update item
+C1 --> E4 : create loan / reject
+C1 --> B1 : result
+
+@enduml
