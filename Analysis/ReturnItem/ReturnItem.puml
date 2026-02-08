@@ -1,0 +1,30 @@
+@startuml
+title Robustness Diagram — Return Item
+skinparam style strictuml
+left to right direction
+
+actor Member
+actor Staff
+
+boundary "Return Page" as B1
+boundary "Return Desk Screen" as B2
+
+control "Return Controller" as C1
+control "Receive Controller" as C2
+
+entity "Loan" as E1
+entity "BookItem" as E2
+entity "Fine" as E3
+
+Member --> B1
+B1 --> C1
+C1 --> B2
+
+Staff --> B2
+B2 --> C2
+C2 --> E1 : close loan
+C2 --> E2 : mark available
+C2 --> E3 : calculate fine
+C2 --> B2 : receipt
+
+@enduml
