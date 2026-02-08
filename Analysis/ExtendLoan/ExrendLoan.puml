@@ -1,0 +1,21 @@
+@startuml
+title Robustness Diagram — Extend Loan
+skinparam style strictuml
+left to right direction
+
+actor Member
+
+boundary "Renew Loan Page" as B1
+control "Renew Controller" as C1
+
+entity "Loan" as E1
+entity "Policy" as E2
+
+Member --> B1
+B1 --> C1
+C1 --> E1 : load loan
+C1 --> E2 : validate rules
+C1 --> E1 : update date
+C1 --> B1 : result
+
+@enduml
